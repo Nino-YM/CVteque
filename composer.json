@@ -1,0 +1,5 @@
+{
+    "require": {
+        "psr/simple-cache": "2.0"
+    }
+}
