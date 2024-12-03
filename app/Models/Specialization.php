@@ -10,8 +10,9 @@ class Specialization extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description'];
-    public function resumes()
+
+    public function students()
     {
-        return $this->hasMany(Resume::class);
+        return $this->hasMany(Student::class, 'spec_id');
     }
 }
