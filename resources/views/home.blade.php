@@ -35,11 +35,11 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         @forelse ($resumes as $resume)
         <div class="border rounded-lg p-4 shadow hover:shadow-md transition bg-white dark:bg-gray-800">
-            <div class="mb-4">
+            <div class="mb-4 flex justify-center items-center">
                 <img 
                     src="{{ asset('storage/' . $resume->webp_path) }}" 
                     alt="Resume Thumbnail" 
-                    class="w-full h-auto">
+                    class="max-w-[150px] max-h-[200px] object-contain">
             </div>
             <h3 class="text-lg font-bold text-gray-800 dark:text-white">
                 {{ $resume->student->name ?? 'Nom inconnu' }}
