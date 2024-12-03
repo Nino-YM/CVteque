@@ -9,8 +9,12 @@ class Resume extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['student_id', 'spec_id', 'file_path', 'uploaded_at'];
+    protected $fillable = ['student_id', 'spec_id', 'file_path', 'webp_path', 'uploaded_at'];
 
+    protected $casts = [
+        'uploaded_at' => 'datetime',
+    ];
+    
     public function student()
     {
         return $this->belongsTo(Student::class);

@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '72fd8da0a460d863fd8b7379a0313316cdd89735',
+        'reference' => '58ebb8624eca6301ebec33a1ff0f2e1f1286c489',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -397,7 +397,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '72fd8da0a460d863fd8b7379a0313316cdd89735',
+            'reference' => '58ebb8624eca6301ebec33a1ff0f2e1f1286c489',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -973,6 +973,15 @@
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'spatie/pdf-to-image' => array(
+            'pretty_version' => '1.2.2',
+            'version' => '1.2.2.0',
+            'reference' => '9a5cb264a99e87e010c65d4ece03b51f821d55bd',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../spatie/pdf-to-image',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/clock' => array(
             'pretty_version' => 'v7.1.6',

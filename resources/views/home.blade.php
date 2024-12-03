@@ -32,39 +32,36 @@
         </form>
     </div>
 
-    <!-- Resume Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         @forelse ($resumes as $resume)
-            <div class="border rounded-lg p-4 shadow hover:shadow-md transition bg-white dark:bg-gray-800">
-                <div class="mb-4">
-                    <!-- Display PDF Preview -->
-                    <object 
-                        data="{{ asset('storage/' . $resume->file_path) }}" 
-                        type="application/pdf" 
-                        class="w-full h-48" 
-                        aria-label="Miniature">
-                        <p>Votre navigateur ne supporte pas l'affichage des PDF. <a href="{{ asset('storage/' . $resume->file_path) }}" target="_blank">Voir le CV</a></p>
-                    </object>
-                </div>
-                <h3 class="text-lg font-bold text-gray-800 dark:text-white">
-                    {{ $resume->student->name ?? 'Nom inconnu' }}
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                    Spécialisation: {{ $resume->student->specialization->name ?? 'Non spécifiée' }}
-                </p>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                    Ajouté le: {{ optional($resume->uploaded_at)->format('d/m/Y') ?? 'Date inconnue' }}
-                </p>
-                <a href="{{ $resume->file_path ? asset('storage/' . $resume->file_path) : '#' }}" 
-                target="_blank" 
-                class="block mt-4 text-blue-500 hover:underline">
-                    Voir le CV
-                </a>
+        <div class="border rounded-lg p-4 shadow hover:shadow-md transition bg-white dark:bg-gray-800">
+            <div class="mb-4">
+                <img 
+                    src="{{ asset('storage/' . $resume->webp_path) }}" 
+                    alt="Resume Thumbnail" 
+                    class="w-full h-auto">
             </div>
-
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+                {{ $resume->student->name ?? 'Nom inconnu' }}
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                Spécialisation: {{ $resume->student->specialization->name ?? 'Non spécifiée' }}
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Ajouté le: {{ optional($resume->uploaded_at)->format('d/m/Y') ?? 'Date inconnue' }}
+            </p>
+            <a href="{{ asset('storage/' . $resume->file_path) }}" 
+            target="_blank" 
+            class="block mt-4 text-blue-500 hover:underline">
+                Voir le CV
+            </a>
+        </div>
         @empty
-            <p class="text-center col-span-full text-gray-600 dark:text-gray-400">Aucun CV disponible pour cette spécialisation.</p>
+            <p class="text-center col-span-full text-gray-600 dark:text-gray-400">
+                Aucun CV disponible pour cette spécialisation.
+            </p>
         @endforelse
     </div>
-</div>
+
+
 @endsection

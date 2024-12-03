@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('file_path');
             $table->timestamp('uploaded_at')->nullable();
             $table->timestamps();
+            $table->string('webp_path')->nullable();
         });        
     }
 
