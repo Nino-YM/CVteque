@@ -88,8 +88,17 @@ class ResumeController extends Controller
         return redirect()->route('home')->with('success', 'CV supprimé avec succès.');
     }
     
-
-
+    public function view($id)
+    {
+        $resume = Resume::with('student')->findOrFail($id);
+    
+        // Fetch the previous and next resumes based on the current resume ID
+        $previousResume = Resume::where('id', '<', $resume->id)->orderBy('id', 'desc')->first();
+        $nextResume = Resume::where('id', '>', $resume->id)->orderBy('id', 'asc')->first();
+    
+        return view('resumes.view', compact('resume', 'previousResume', 'nextResume'));
+    }
+    
 
     public function store(Request $request)
     {

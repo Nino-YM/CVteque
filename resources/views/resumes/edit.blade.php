@@ -16,13 +16,6 @@
         </div>
     @endif
 
-    <div class="mb-6 flex justify-center">
-        <img 
-            src="{{ asset('storage/' . $resume->webp_path) }}" 
-            alt="Miniature du CV" 
-            class="max-w-[600px] max-h-[800px] object-contain">
-    </div>
-
     <form action="{{ route('resumes.update', $resume->id) }}" method="POST" enctype="multipart/form-data" class="max-w-lg mx-auto bg-white p-6 shadow-md rounded-lg">
         @csrf
         @method('PATCH')
@@ -57,5 +50,20 @@
             Sauvegarder les modifications
         </button>
     </form>
+    <h2 class="text-center p-6 text-2xl font-bold text-gray-800 dark:text-white">
+        CV actuel
+    </h2>
+    <div class="flex p-6 justify-center">
+        <img 
+            src="{{ asset('storage/' . $resume->webp_path) }}" 
+            alt="Miniature du CV" 
+            class="max-w-[600px] max-h-[800px] object-contain">
+    </div>
+    <div class="text-center mt-4">
+        <a href="{{ route('resumes.view', $resume->id) }}" 
+           class="px-6 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-700 transition">
+            Ouvrir dans la visionneuse
+        </a>
+    </div>
 </div>
 @endsection

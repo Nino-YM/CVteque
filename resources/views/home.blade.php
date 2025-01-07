@@ -77,8 +77,7 @@
                    class="px-4 py-2 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-700 transition">
                     Modifier
                 </a>
-                <a href="{{ asset('storage/' . $resume->file_path) }}" 
-                target="_blank" 
+                <a href="{{ route('resumes.view', $resume->id) }}" 
                 class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-700 transition">
                     Voir le CV
                 </a>

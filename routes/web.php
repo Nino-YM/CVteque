@@ -20,6 +20,7 @@ Route::get('/resumes/{id}/edit', [ResumeController::class, 'edit'])->name('resum
 Route::patch('/resumes/{id}', [ResumeController::class, 'update'])->name('resumes.update');
 Route::delete('/resumes/{id}', [ResumeController::class, 'destroy'])->name('resumes.destroy');
 
+Route::get('/resumes/{id}/view', [ResumeController::class, 'view'])->name('resumes.view');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
