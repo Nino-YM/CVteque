@@ -154,7 +154,7 @@ class ResumeController extends Controller
             'uploaded_at' => now(),
         ]);
 
-        return redirect()->route('home')->with('success', 'CV uploaded successfully. All previous CVs for this student were replaced.');
+        return redirect()->route('home')->with('success', 'CV uploaded successfully. All previous CV for this student were replaced.');
     }
 
 }

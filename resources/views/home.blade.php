@@ -3,10 +3,10 @@
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-center text-4xl font-bold text-gray-800 dark:text-white">
-        Liste des CVs
+        Liste des CV
     </h1>
     <p class="text-center text-gray-600 dark:text-gray-400 mt-4">
-        Explorez et gérez les CVs des étudiants. Filtrez par spécialisation ou ajoutez un nouveau CV.
+        Explorez et gérez les CV des étudiants. Filtrez par spécialisation ou ajoutez un nouveau CV.
     </p>
     <div class="text-center mt-6">
         <a href="{{ route('resumes.create') }}" class="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-700 transition">
