@@ -14,19 +14,27 @@ class HomeController extends Controller
         // Fetch specializations for the filter dropdown
         $specializations = Specialization::all();
     
-        // Start building the query
+        // Build the query for filtering and searching
         $query = Resume::with('student.specialization');
     
-        // Apply specialization filter if selected
+        // Filter resumes based on specialization
         if ($request->filled('spec_filter')) {
             $query->whereHas('student', function ($q) use ($request) {
                 $q->where('spec_id', $request->spec_filter);
             });
         }
     
-        // Execute the query and fetch resumes
+        // Search resumes by student name or email
+        if ($request->filled('search_query')) {
+            $query->whereHas('student', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search_query . '%')
+                  ->orWhere('email', 'like', '%' . $request->search_query . '%');
+            });
+        }
+    
+        // Fetch the filtered and/or searched resumes
         $resumes = $query->latest()->get();
     
         return view('home', compact('specializations', 'resumes'));
-    }
+    }    
 }

@@ -14,11 +14,29 @@
         </a>
     </div>
 
+    <!-- Search Bar -->
+    <div class="mt-8">
+        <form action="{{ route('home') }}" method="GET" class="text-center">
+            <label for="search_query" class="block text-gray-700 dark:text-white mb-2">Rechercher un étudiant:</label>
+            <input 
+                type="text" 
+                name="search_query" 
+                id="search_query" 
+                value="{{ request('search_query') }}" 
+                placeholder="Nom ou email..." 
+                class="p-2 border rounded w-64"
+            >
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-700 transition ml-2">
+                Rechercher
+            </button>
+        </form>
+    </div>
+
     <!-- Filter Dropdown -->
     <div class="mt-8">
         <form action="{{ route('home') }}" method="GET" class="text-center">
             <label for="spec_filter" class="block text-gray-700 dark:text-white mb-2">Filtrer par spécialisation:</label>
-            <select name="spec_filter" id="spec_filter" class="p-2 border rounded">
+            <select name="spec_filter" id="spec_filter" class="p-2 border rounded w-64">
                 <option value="">Toutes les spécialisations</option>
                 @foreach ($specializations as $specialization)
                     <option value="{{ $specialization->id }}" {{ request('spec_filter') == $specialization->id ? 'selected' : '' }}>
