@@ -6,15 +6,20 @@ use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])
-    ->middleware(['auth']) // Ensure only authenticated users access the homepage
+    ->middleware(['auth'])
     ->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/upload-resume', [ResumeController::class, 'create'])->name('resumes.create'); // Form
-Route::post('/upload-resume', [ResumeController::class, 'store'])->name('resumes.store');  // Handle upload
+Route::get('/upload-resume', [ResumeController::class, 'create'])->name('resumes.create');
+Route::post('/upload-resume', [ResumeController::class, 'store'])->name('resumes.store');
+
+Route::get('/resumes/{id}/edit', [ResumeController::class, 'edit'])->name('resumes.edit');
+Route::patch('/resumes/{id}', [ResumeController::class, 'update'])->name('resumes.update');
+Route::delete('/resumes/{id}', [ResumeController::class, 'destroy'])->name('resumes.destroy');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

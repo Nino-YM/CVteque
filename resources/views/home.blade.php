@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-center text-4xl font-bold text-gray-800 dark:text-white">
-        Bienvenue dans la CVthèque de l'EPSI
+        Liste des CVs
     </h1>
     <p class="text-center text-gray-600 dark:text-gray-400 mt-4">
         Explorez et gérez les CVs des étudiants. Filtrez par spécialisation ou ajoutez un nouveau CV.
@@ -50,11 +50,31 @@
             <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
                 Ajouté le: {{ optional($resume->uploaded_at)->format('d/m/Y') ?? 'Date inconnue' }}
             </p>
-            <a href="{{ asset('storage/' . $resume->file_path) }}" 
-            target="_blank" 
-            class="block mt-4 text-blue-500 hover:underline">
-                Voir le CV
-            </a>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Dernière mise à jour le: {{ optional($resume->updated_at)->format('d/m/Y') ?? 'Non modifié' }}
+            </p>
+
+            <div class="mt-4 flex justify-between">
+                <a href="{{ route('resumes.edit', $resume->id) }}" 
+                   class="px-4 py-2 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-700 transition">
+                    Modifier
+                </a>
+                <a href="{{ asset('storage/' . $resume->file_path) }}" 
+                target="_blank" 
+                class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                    Voir le CV
+                </a>
+                <form action="{{ route('resumes.destroy', $resume->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button 
+                        type="submit" 
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-700 transition"
+                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce CV ?');">
+                        Supprimer
+                    </button>
+                </form>
+            </div>
         </div>
         @empty
             <p class="text-center col-span-full text-gray-600 dark:text-gray-400">
@@ -62,6 +82,5 @@
             </p>
         @endforelse
     </div>
-
-
+</div>
 @endsection
